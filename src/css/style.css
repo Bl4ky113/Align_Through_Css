@@ -1,4 +1,105 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
+}
+
+.wrapper {
+  max-width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template: minmax(4vh, auto) 1fr minmax(4vh, auto)/1fr;
+  grid-template-areas: "header" "main  " "footer";
+  overflow-x: hidden;
+}
+
+.header {
+  padding: 0.25rem;
+  background-color: #004445;
+  grid-area: header;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  justify-content: space-around;
+}
+.header .header-wrapper {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 2px solid #2C7873;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.header .header__icon {
+  padding: 0 0.5rem;
+  color: #2C7873;
+}
+.header .header__icon::before {
+  content: "";
+  font: 500 1.5em "FontAwesome";
+}
+.header .header__title {
+  color: #fff;
+  font: 600 1.75em "Roboto Condensed", sans-serif;
+  text-align: center;
+  text-transform: capitalize;
+}
+.header .header__text {
+  padding: 0.25rem;
+  color: #2C7873;
+  font: 400 0.9rem "Roboto Mono", monospace;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.footer {
+  padding: 0.75rem 0.25rem;
+  background-color: #004445;
+  display: grid;
+  grid-template: auto/1fr;
+  gap: 0.5rem;
+}
+.footer .footer-section {
+  padding: 0.25rem;
+  border-top: 2px solid #2C7873;
+  border-bottom: 2px solid #2C7873;
+  border-radius: 0.25rem;
+  grid-column: span 1;
+  grid-row: span 1;
+}
+.footer .footer__title {
+  color: #fff;
+  font: 500 1.1em "Roboto Condensed", sans-serif;
+  text-transform: capitalize;
+}
+.footer .list {
+  border-left: 2px solid #2C7873;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  list-style: none;
+}
+.footer .list .list__obj {
+  color: #fff;
+  font: 400 1em "Roboto", sans-serif;
+}
+.footer .list .list__obj::before {
+  padding-right: 0.25rem;
+  content: "";
+  color: #2C7873;
+  font: 500 1em "FontAwesome";
+}
+.footer .list .list__link {
+  outline: none;
+  border-radius: 0.25rem;
+  color: #6FB98F;
+  font: 300 1em "Roboto", sans-serif;
+  text-decoration: none;
+}
+.footer .list .list__link::before {
+  content: "";
+  color: #2C7873;
+  font: 500 0.75em "FontAwesome";
+}
+.footer .list .list__link:hover, .footer .list .list__link:focus, .footer .list .list__link:active {
+  outline: 2px solid #2C7873;
 }
