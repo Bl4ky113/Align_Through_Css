@@ -52,6 +52,111 @@
   text-transform: capitalize;
 }
 
+.main {
+  margin: 0 0.5rem;
+  padding: 0.35rem;
+  box-shadow: 0 0 25px -5px;
+  grid-area: main;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+}
+.main .section {
+  margin: 0.25rem;
+  border: 2px solid #004445;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  background-color: #2C7873;
+  display: grid;
+  grid-template: auto auto 1fr/1fr;
+  grid-template-areas: "title" "btns " "align";
+  align-items: stretch;
+  justify-content: stretch;
+}
+.main .section .section__title {
+  border-left: 2px solid #021C1E;
+  border-bottom: 2px solid #021C1E;
+  padding: 0.25rem;
+  padding-left: 0.5rem;
+  color: #fff;
+  font: 500 1.2em "Roboto Condensed", sans-serif;
+}
+.main .section .btn-wrapper {
+  padding: 0.25rem;
+  grid-area: btns;
+  display: grid;
+  grid-template: auto/1fr 1fr;
+  align-items: stretch;
+  justify-content: stretch;
+}
+.main .section .btn-wrapper .section__btn {
+  margin: 0.15rem;
+  border: none;
+  border-radius: 0.25rem;
+  outline: none;
+  padding: 0.25rem;
+  background-color: #004445;
+  color: #fff;
+  font: 400 0.8em "Roboto", sans-serif;
+  text-transform: capitalize;
+}
+.main .section .btn-wrapper .section__btn:hover, .main .section .btn-wrapper .section__btn:focus, .main .section .btn-wrapper .section__btn:active {
+  outline: 2px solid #6FB98F;
+  color: #6FB98F;
+  text-decoration: underline solid 1px #6FB98F;
+}
+.main .section .align-wrapper {
+  border: 2px solid #004445;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  grid-area: align;
+  position: relative;
+}
+.main .section .grid-display {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: grid;
+  grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+}
+.main .section .grid-display .grid-display__obj {
+  outline: 1px solid #021C1E;
+}
+.main .section .align {
+  width: 15rem;
+  height: 15rem;
+  z-index: 0;
+}
+.main .section .align .align__child {
+  width: 5rem;
+  height: 5rem;
+  background-color: #6FB98F;
+}
+.main .section .align--table-cell {
+  display: table-cell;
+}
+.main .section .align--table-cell .align__child {
+  display: inline-block;
+}
+.main .section .align--positions {
+  position: relative;
+}
+.main .section .align--positions .align__child {
+  position: absolute;
+}
+.main .section .align--flexbox {
+  display: flex;
+}
+.main .section .align--grid {
+  display: grid;
+  grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+}
+
 .footer {
   padding: 0.75rem 0.25rem;
   background-color: #004445;
