@@ -108,6 +108,8 @@
   text-decoration: underline solid 1px #6FB98F;
 }
 .main .section .align-wrapper {
+  width: 15rem;
+  height: 15rem;
   border: 2px solid #004445;
   border-radius: 0.25rem;
   background-color: #fff;
