@@ -29,8 +29,21 @@ Object.values(ALIGN_OBJ).forEach(value => {
 
 const KEY_CODES = [37, 38, 39, 40];
 const POSIBLE_ALIGN = ["left", "center", "right"];
+const DEVICE_SCREEN = {
+  x: window.screen.width,
+  y: window.screen.height,
+};
 
-const MEDIA_QUERY = window.matchMedia("(min-width: 1024;)");
+let touch_coordinates = {
+  initial: {
+    x: 0,
+    y: 0
+  },
+  final: {
+    x: 0,
+    y: 0
+  }
+};
 
 const align_functions = {
   margin: (alignTo=["center", "center"]) => {
@@ -128,14 +141,38 @@ const checkGlobalAlign = () => {
   return global_align;
 };
 
-window.onload = () => {
+const calcCoordinatesAlign = (initial={}, final={}) => {
+  const differences = {
+    x: initial.x - final.x,
+    y: initial.y - final.y
+  };
+  const align_coordinates = {
+    axis: "",
+    operator: 0,
+    difference: 0
+  };
 
+  if (Math.abs(differences.x) > Math.abs(differences.y)) {
+    align_coordinates.axis = "x";
+    align_coordinates.difference = differences.x;
+  } else {
+    align_coordinates.axis = "y";
+    align_coordinates.difference = differences.y;
+  }
+  
+  if (align_coordinates.difference > 0) {
+    align_coordinates.operator = -1;
+  } else {
+    align_coordinates.operator = 1;
+  }
+
+  return align_coordinates;
 };
 
 window.onkeydown = (event) => {
   if (KEY_CODES.includes(event.keyCode)) {
     event.preventDefault();
-    
+
     const index_key_down = KEY_CODES.indexOf(event.keyCode);
     const global_align = checkGlobalAlign();
     const index_align = {};
@@ -162,4 +199,32 @@ window.onkeydown = (event) => {
         break;
     }
   }
-}
+};
+
+window.ontouchstart = (event) => {
+  touch_coordinates.initial.x = event.changedTouches[0].clientX;
+  touch_coordinates.initial.y = event.changedTouches[0].clientY;
+};
+
+window.ontouchend = (event) => {
+  touch_coordinates.final.x = event.changedTouches[0].clientX;
+  touch_coordinates.final.y = event.changedTouches[0].clientY;
+
+  let coordinates_obj = calcCoordinatesAlign(touch_coordinates.initial, touch_coordinates.final);
+  
+  if (event.target.className === "grid-display__obj" && Math.abs(coordinates_obj.difference) <= (DEVICE_SCREEN[coordinates_obj.axis] * 0.5)) {
+    let align_target = {
+      class_name: event.target.parentElement.previousElementSibling.className.replace("align align--", "").replace("-", "_"),
+    };
+    align_target["align_status"] = ALIGN_OBJ[align_target.class_name].align_status;
+    
+    let index_arr = 0;
+    if (coordinates_obj.axis !== "x") { index_arr = 1; }
+
+    const align_index = POSIBLE_ALIGN.indexOf(align_target.align_status[index_arr]) + (coordinates_obj.operator);
+    if (align_index >= 0 && align_index <= (POSIBLE_ALIGN.length - 1)) {
+      if (coordinates_obj.axis === "x") { align_functions[align_target.class_name]([POSIBLE_ALIGN[align_index], align_target.align_status[1]]); }
+        else { align_functions[align_target.class_name]([align_target.align_status[0], POSIBLE_ALIGN[align_index]]); }
+    }
+  }
+};

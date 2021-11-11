@@ -36,7 +36,20 @@ Object.values(ALIGN_OBJ).forEach(function (value) {
 });
 var KEY_CODES = [37, 38, 39, 40];
 var POSIBLE_ALIGN = ["left", "center", "right"];
-var MEDIA_QUERY = window.matchMedia("(min-width: 1024;)");
+var DEVICE_SCREEN = {
+  x: window.screen.width,
+  y: window.screen.height
+};
+var touch_coordinates = {
+  initial: {
+    x: 0,
+    y: 0
+  },
+  "final": {
+    x: 0,
+    y: 0
+  }
+};
 var align_functions = {
   margin: function margin() {
     var alignTo = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ["center", "center"];
@@ -146,7 +159,37 @@ var checkGlobalAlign = function checkGlobalAlign() {
   return global_align;
 };
 
-window.onload = function () {};
+var calcCoordinatesAlign = function calcCoordinatesAlign() {
+  var initial = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var _final = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  var differences = {
+    x: initial.x - _final.x,
+    y: initial.y - _final.y
+  };
+  var align_coordinates = {
+    axis: "",
+    operator: 0,
+    difference: 0
+  };
+
+  if (Math.abs(differences.x) > Math.abs(differences.y)) {
+    align_coordinates.axis = "x";
+    align_coordinates.difference = differences.x;
+  } else {
+    align_coordinates.axis = "y";
+    align_coordinates.difference = differences.y;
+  }
+
+  if (align_coordinates.difference > 0) {
+    align_coordinates.operator = -1;
+  } else {
+    align_coordinates.operator = 1;
+  }
+
+  return align_coordinates;
+};
 
 window.onkeydown = function (event) {
   if (KEY_CODES.includes(event.keyCode)) {
@@ -182,6 +225,39 @@ window.onkeydown = function (event) {
       default:
         console.error("Error: Invalid Key Down Index");
         break;
+    }
+  }
+};
+
+window.ontouchstart = function (event) {
+  touch_coordinates.initial.x = event.changedTouches[0].clientX;
+  touch_coordinates.initial.y = event.changedTouches[0].clientY;
+};
+
+window.ontouchend = function (event) {
+  touch_coordinates["final"].x = event.changedTouches[0].clientX;
+  touch_coordinates["final"].y = event.changedTouches[0].clientY;
+  var coordinates_obj = calcCoordinatesAlign(touch_coordinates.initial, touch_coordinates["final"]);
+
+  if (event.target.className === "grid-display__obj" && Math.abs(coordinates_obj.difference) <= DEVICE_SCREEN[coordinates_obj.axis] * 0.5) {
+    var align_target = {
+      class_name: event.target.parentElement.previousElementSibling.className.replace("align align--", "").replace("-", "_")
+    };
+    align_target["align_status"] = ALIGN_OBJ[align_target.class_name].align_status;
+    var index_arr = 0;
+
+    if (coordinates_obj.axis !== "x") {
+      index_arr = 1;
+    }
+
+    var align_index = POSIBLE_ALIGN.indexOf(align_target.align_status[index_arr]) + coordinates_obj.operator;
+
+    if (align_index >= 0 && align_index <= POSIBLE_ALIGN.length - 1) {
+      if (coordinates_obj.axis === "x") {
+        align_functions[align_target.class_name]([POSIBLE_ALIGN[align_index], align_target.align_status[1]]);
+      } else {
+        align_functions[align_target.class_name]([align_target.align_status[0], POSIBLE_ALIGN[align_index]]);
+      }
     }
   }
 };
