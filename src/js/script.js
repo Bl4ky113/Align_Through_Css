@@ -27,6 +27,7 @@ Object.values(ALIGN_OBJ).forEach(value => {
   value["child"] = value.obj.firstChild;
 });
 
+const FONT_SIZE = parseFloat(window.getComputedStyle(document.body).fontSize);
 const KEY_CODES = [37, 38, 39, 40];
 const POSIBLE_ALIGN = ["left", "center", "right"];
 const DEVICE_SCREEN = {
@@ -56,8 +57,8 @@ const align_functions = {
       left: 0
     };
   
-    const left_margin = (multiplier[`${alignTo[0]}`] * width) / 16;
-    const top_margin = (multiplier[`${alignTo[1]}`] * height) / 16;
+    const left_margin = (multiplier[`${alignTo[0]}`] * width) / FONT_SIZE;
+    const top_margin = (multiplier[`${alignTo[1]}`] * height) / FONT_SIZE;
     
     ALIGN_OBJ.margin.child.style = `margin-left: ${left_margin}rem; margin-top: ${top_margin}rem;`;
     ALIGN_OBJ.margin.align_status = [alignTo[0], alignTo[1]];
@@ -121,17 +122,22 @@ const align_functions = {
   }
 };
 
-const alignAll = (moveAxis="x", index_operator=-1, global_align_status={}) => {
-  let index_arr = 0;
+const alignElement = (element="", moveAxis="x", index_operator=-1, align_status=[]) => {
+  let index_arr =  moveAxis !== "x" ? 1 : 0;
+  const align_index = POSIBLE_ALIGN.indexOf(align_status[index_arr]) + (index_operator);
 
-  if (moveAxis !== "x") { index_arr = 1; }
-
-  Object.entries(global_align_status).forEach(([key, value]) => {
-    const align_index = POSIBLE_ALIGN.indexOf(value[index_arr]) + (index_operator);
-    if (align_index >= 0 && align_index <= (POSIBLE_ALIGN.length - 1)) {
-      if (moveAxis === "x") { align_functions[key]([POSIBLE_ALIGN[align_index], value[1]]); }
-        else { align_functions[key]([value[0], POSIBLE_ALIGN[align_index]]); }
+  if (align_index >= 0 && align_index <= (POSIBLE_ALIGN.length - 1)) {
+    if (moveAxis === "x") {
+      align_functions[element]([POSIBLE_ALIGN[align_index], align_status[1]]);
+    } else {
+      align_functions[element]([align_status[0], POSIBLE_ALIGN[align_index]]);
     }
+  }
+};
+
+const alignAll = (moveAxis="x", index_operator=-1, global_align_status={}) => {
+  Object.entries(global_align_status).forEach(([key, value]) => {
+    alignElement(key, moveAxis, index_operator, value);
   });
 };
 
@@ -214,17 +220,10 @@ window.ontouchend = (event) => {
   
   if (event.target.className === "grid-display__obj" && Math.abs(coordinates_obj.difference) <= (DEVICE_SCREEN[coordinates_obj.axis] * 0.5)) {
     let align_target = {
-      class_name: event.target.parentElement.previousElementSibling.className.replace("align align--", "").replace("-", "_"),
+      align_name: event.target.parentElement.previousElementSibling.className.replace("align align--", "").replace("-", "_"),
     };
-    align_target["align_status"] = ALIGN_OBJ[align_target.class_name].align_status;
+    align_target["align_status"] = ALIGN_OBJ[align_target.align_name].align_status;
     
-    let index_arr = 0;
-    if (coordinates_obj.axis !== "x") { index_arr = 1; }
-
-    const align_index = POSIBLE_ALIGN.indexOf(align_target.align_status[index_arr]) + (coordinates_obj.operator);
-    if (align_index >= 0 && align_index <= (POSIBLE_ALIGN.length - 1)) {
-      if (coordinates_obj.axis === "x") { align_functions[align_target.class_name]([POSIBLE_ALIGN[align_index], align_target.align_status[1]]); }
-        else { align_functions[align_target.class_name]([align_target.align_status[0], POSIBLE_ALIGN[align_index]]); }
-    }
+    alignElement(align_target.align_name, coordinates_obj.axis, coordinates_obj.operator, align_target.align_status);
   }
 };

@@ -152,6 +152,8 @@
       grid-area: align;
 
       position: relative;
+
+      touch-action: none;
     }
 
     .grid-display {

@@ -34,6 +34,7 @@ var ALIGN_OBJ = {
 Object.values(ALIGN_OBJ).forEach(function (value) {
   value["child"] = value.obj.firstChild;
 });
+var FONT_SIZE = parseFloat(window.getComputedStyle(document.body).fontSize);
 var KEY_CODES = [37, 38, 39, 40];
 var POSIBLE_ALIGN = ["left", "center", "right"];
 var DEVICE_SCREEN = {
@@ -60,8 +61,8 @@ var align_functions = {
       center: 1,
       left: 0
     };
-    var left_margin = multiplier["".concat(alignTo[0])] * width / 16;
-    var top_margin = multiplier["".concat(alignTo[1])] * height / 16;
+    var left_margin = multiplier["".concat(alignTo[0])] * width / FONT_SIZE;
+    var top_margin = multiplier["".concat(alignTo[1])] * height / FONT_SIZE;
     ALIGN_OBJ.margin.child.style = "margin-left: ".concat(left_margin, "rem; margin-top: ").concat(top_margin, "rem;");
     ALIGN_OBJ.margin.align_status = [alignTo[0], alignTo[1]];
   },
@@ -120,30 +121,33 @@ var align_functions = {
   }
 };
 
+var alignElement = function alignElement() {
+  var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var moveAxis = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "x";
+  var index_operator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
+  var align_status = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+  var index_arr = moveAxis !== "x" ? 1 : 0;
+  var align_index = POSIBLE_ALIGN.indexOf(align_status[index_arr]) + index_operator;
+
+  if (align_index >= 0 && align_index <= POSIBLE_ALIGN.length - 1) {
+    if (moveAxis === "x") {
+      align_functions[element]([POSIBLE_ALIGN[align_index], align_status[1]]);
+    } else {
+      align_functions[element]([align_status[0], POSIBLE_ALIGN[align_index]]);
+    }
+  }
+};
+
 var alignAll = function alignAll() {
   var moveAxis = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "x";
   var index_operator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
   var global_align_status = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var index_arr = 0;
-
-  if (moveAxis !== "x") {
-    index_arr = 1;
-  }
-
   Object.entries(global_align_status).forEach(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
         key = _ref2[0],
         value = _ref2[1];
 
-    var align_index = POSIBLE_ALIGN.indexOf(value[index_arr]) + index_operator;
-
-    if (align_index >= 0 && align_index <= POSIBLE_ALIGN.length - 1) {
-      if (moveAxis === "x") {
-        align_functions[key]([POSIBLE_ALIGN[align_index], value[1]]);
-      } else {
-        align_functions[key]([value[0], POSIBLE_ALIGN[align_index]]);
-      }
-    }
+    alignElement(key, moveAxis, index_operator, value);
   });
 };
 
@@ -241,23 +245,9 @@ window.ontouchend = function (event) {
 
   if (event.target.className === "grid-display__obj" && Math.abs(coordinates_obj.difference) <= DEVICE_SCREEN[coordinates_obj.axis] * 0.5) {
     var align_target = {
-      class_name: event.target.parentElement.previousElementSibling.className.replace("align align--", "").replace("-", "_")
+      align_name: event.target.parentElement.previousElementSibling.className.replace("align align--", "").replace("-", "_")
     };
-    align_target["align_status"] = ALIGN_OBJ[align_target.class_name].align_status;
-    var index_arr = 0;
-
-    if (coordinates_obj.axis !== "x") {
-      index_arr = 1;
-    }
-
-    var align_index = POSIBLE_ALIGN.indexOf(align_target.align_status[index_arr]) + coordinates_obj.operator;
-
-    if (align_index >= 0 && align_index <= POSIBLE_ALIGN.length - 1) {
-      if (coordinates_obj.axis === "x") {
-        align_functions[align_target.class_name]([POSIBLE_ALIGN[align_index], align_target.align_status[1]]);
-      } else {
-        align_functions[align_target.class_name]([align_target.align_status[0], POSIBLE_ALIGN[align_index]]);
-      }
-    }
+    align_target["align_status"] = ALIGN_OBJ[align_target.align_name].align_status;
+    alignElement(align_target.align_name, coordinates_obj.axis, coordinates_obj.operator, align_target.align_status);
   }
 };

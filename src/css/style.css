@@ -115,6 +115,7 @@
   background-color: #fff;
   grid-area: align;
   position: relative;
+  touch-action: none;
 }
 .main .section .grid-display {
   width: 100%;
