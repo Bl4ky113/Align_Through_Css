@@ -245,7 +245,7 @@
       .code-pre {
         max-width: 15rem;
 
-        overflow-x: scroll;
+        overflow-x: auto;
       }
       
       .code {
@@ -255,7 +255,6 @@
         font: 300 0.75rem "Roboto Mono", consolas;
         
         display: block;
-        overflow-x: scroll;
         tab-size: 1em;
 
         .selector { color: $color_scss; }

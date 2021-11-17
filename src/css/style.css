@@ -181,14 +181,13 @@
 }
 .main .section--code .code-wrapper .code-pre {
   max-width: 15rem;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .main .section--code .code-wrapper .code {
   max-width: 15rem;
   color: #fff;
   font: 300 0.75rem "Roboto Mono", consolas;
   display: block;
-  overflow-x: scroll;
   tab-size: 1em;
 }
 .main .section--code .code-wrapper .code .selector {
