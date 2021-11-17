@@ -89,9 +89,8 @@
     background-color: $color_base;
     
     display: grid;
-    grid-template: auto auto 1fr / 1fr;
+    grid-template: auto 1fr / 1fr;
     grid-template-areas: "title"
-                         "btns "
                          "align";
     align-items: stretch;
     justify-content: stretch;
@@ -104,40 +103,8 @@
 
       color: $font_white;
       font: 500 1.2em "Roboto Condensed", sans-serif;
-    }
 
-    .btn-wrapper {
-      padding: 0.25rem;
-
-      grid-area: btns;
-
-      display: grid;
-      grid-template: auto / 1fr 1fr;
-      align-items: stretch;
-      justify-content: stretch;
-
-      .section__btn {
-        margin: 0.15rem;
-        border: none;
-        border-radius: 0.25rem;
-        outline: none;
-        padding: 0.25rem;
-
-        background-color: $color_dark;
-
-        color: $color_white;
-        font: 400 0.8em "Roboto", sans-serif;
-        text-transform: capitalize;
-
-        &:hover,
-        &:focus,
-        &:active {
-          outline: 2px solid $color_light;
-
-          color: $color_light;
-          text-decoration: underline solid 1px $color_light;
-        }
-      }
+      grid-area: title;
     }
 
     .align-wrapper {
@@ -146,6 +113,7 @@
       
       border: 2px solid $color_dark;
       border-radius: 0.25rem;
+      margin: 0.5rem 0;
       
       background-color: $color_white;
 
@@ -220,6 +188,82 @@
     .align--grid {
       display: grid;
       grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    }
+  }
+
+  .section--code {
+    grid-template: auto auto 1fr / 1fr;
+    grid-template-areas: "title" 
+                         "btns "
+                         "code ";
+
+    background-color: $color_dark;
+
+    .btn-wrapper {
+      padding: 0.25rem;
+
+      grid-area: btns;
+
+      display: grid;
+      grid-template: auto / 1fr 1fr;
+      align-items: stretch;
+      justify-content: stretch;
+
+      .btn {
+        margin: 0.15rem;
+        border: none;
+        border-radius: 0.25rem;
+        outline: none;
+        padding: 0.25rem;
+
+        background-color: $color_black;
+
+        color: $color_white;
+        font: 400 0.8em "Roboto Mono", monospace;
+        text-transform: capitalize;
+
+        &:hover,
+        &:focus,
+        &:active {
+          outline: 2px solid $color_light;
+
+          color: $color_light;
+          text-decoration: underline solid 1px $color_light;
+        }
+      }
+
+      .btn--html5 { outline: 2px solid $color_html5; text-decoration: underline solid $color_html5 1px; }
+      .btn--scss { outline: 2px solid $color_scss; text-decoration: underline solid $color_scss 1px; }
+    }
+
+    .code-wrapper {
+      border-radius: 0.25rem;
+      padding: 0.25rem;
+      
+      background-color: $color_black;
+
+      .code-pre {
+        max-width: 15rem;
+
+        overflow-x: scroll;
+      }
+      
+      .code {
+        max-width: 15rem;
+  
+        color: $font_white;
+        font: 300 0.75rem "Roboto Mono", consolas;
+        
+        display: block;
+        overflow-x: scroll;
+        tab-size: 1em;
+
+        .selector { color: $color_scss; }
+        .value { color: $color_scss_light; }
+        .tag { color: $font_tag; }
+        .atribute-name { color: $font_atribute_name; }
+        .atribute-value { color: $font_atribute_value; }
+      }
     }
   }
 }

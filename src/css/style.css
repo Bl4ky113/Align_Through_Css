@@ -70,8 +70,8 @@
   padding: 0.25rem;
   background-color: #2C7873;
   display: grid;
-  grid-template: auto auto 1fr/1fr;
-  grid-template-areas: "title" "btns " "align";
+  grid-template: auto 1fr/1fr;
+  grid-template-areas: "title" "align";
   align-items: stretch;
   justify-content: stretch;
 }
@@ -82,36 +82,14 @@
   padding-left: 0.5rem;
   color: #fff;
   font: 500 1.2em "Roboto Condensed", sans-serif;
-}
-.main .section .btn-wrapper {
-  padding: 0.25rem;
-  grid-area: btns;
-  display: grid;
-  grid-template: auto/1fr 1fr;
-  align-items: stretch;
-  justify-content: stretch;
-}
-.main .section .btn-wrapper .section__btn {
-  margin: 0.15rem;
-  border: none;
-  border-radius: 0.25rem;
-  outline: none;
-  padding: 0.25rem;
-  background-color: #004445;
-  color: #fff;
-  font: 400 0.8em "Roboto", sans-serif;
-  text-transform: capitalize;
-}
-.main .section .btn-wrapper .section__btn:hover, .main .section .btn-wrapper .section__btn:focus, .main .section .btn-wrapper .section__btn:active {
-  outline: 2px solid #6FB98F;
-  color: #6FB98F;
-  text-decoration: underline solid 1px #6FB98F;
+  grid-area: title;
 }
 .main .section .align-wrapper {
   width: 15rem;
   height: 15rem;
   border: 2px solid #004445;
   border-radius: 0.25rem;
+  margin: 0.5rem 0;
   background-color: #fff;
   grid-area: align;
   position: relative;
@@ -158,6 +136,75 @@
 .main .section .align--grid {
   display: grid;
   grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+}
+.main .section--code {
+  grid-template: auto auto 1fr/1fr;
+  grid-template-areas: "title" "btns " "code ";
+  background-color: #004445;
+}
+.main .section--code .btn-wrapper {
+  padding: 0.25rem;
+  grid-area: btns;
+  display: grid;
+  grid-template: auto/1fr 1fr;
+  align-items: stretch;
+  justify-content: stretch;
+}
+.main .section--code .btn-wrapper .btn {
+  margin: 0.15rem;
+  border: none;
+  border-radius: 0.25rem;
+  outline: none;
+  padding: 0.25rem;
+  background-color: #021C1E;
+  color: #fff;
+  font: 400 0.8em "Roboto Mono", monospace;
+  text-transform: capitalize;
+}
+.main .section--code .btn-wrapper .btn:hover, .main .section--code .btn-wrapper .btn:focus, .main .section--code .btn-wrapper .btn:active {
+  outline: 2px solid #6FB98F;
+  color: #6FB98F;
+  text-decoration: underline solid 1px #6FB98F;
+}
+.main .section--code .btn-wrapper .btn--html5 {
+  outline: 2px solid #ea4707;
+  text-decoration: underline solid #ea4707 1px;
+}
+.main .section--code .btn-wrapper .btn--scss {
+  outline: 2px solid #e519d1;
+  text-decoration: underline solid #e519d1 1px;
+}
+.main .section--code .code-wrapper {
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  background-color: #021C1E;
+}
+.main .section--code .code-wrapper .code-pre {
+  max-width: 15rem;
+  overflow-x: scroll;
+}
+.main .section--code .code-wrapper .code {
+  max-width: 15rem;
+  color: #fff;
+  font: 300 0.75rem "Roboto Mono", consolas;
+  display: block;
+  overflow-x: scroll;
+  tab-size: 1em;
+}
+.main .section--code .code-wrapper .code .selector {
+  color: #e519d1;
+}
+.main .section--code .code-wrapper .code .value {
+  color: #ffb5f9;
+}
+.main .section--code .code-wrapper .code .tag {
+  color: #ff5e00;
+}
+.main .section--code .code-wrapper .code .atribute-name {
+  color: #ff893a;
+}
+.main .section--code .code-wrapper .code .atribute-value {
+  color: #39e809;
 }
 
 .footer {
