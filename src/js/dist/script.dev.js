@@ -12,23 +12,33 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var ALIGN_OBJ = {
   margin: {
     obj: document.getElementsByClassName("align--margin")[0],
-    align_status: ["left", "left"]
+    code_obj: document.getElementById("code_margin"),
+    align_status: ["left", "left"],
+    code_scss: "<span class=\"selector\">.align </span>{\n width: <span class=\"value\">15rem</span>;\n height: <span class=\"value\">15rem</span>;\n\n <span class=\"selector\">.align__child</span> {\n  width: <span class=\"value\">5rem</span>;\n  height: <span class=\"value\">5rem</span>;\n\n  margin-top: <span class=\"value\">$VALUE_2$rem</span>;\n  margin-left: <span class=\"value\">$VALUE_1$rem</span>;\n }\n}"
   },
   table_cell: {
     obj: document.getElementsByClassName("align--table-cell")[0],
-    align_status: ["left", "left"]
+    code_obj: document.getElementById("code_table_cell"),
+    align_status: ["left", "left"],
+    code_scss: "<span class=\"selector\">.align </span>{\n text-align: <span class=\"value\">$VALUE_1$</span>;\n vertical-align: <span class=\"value\">$VALUE_2$</span>;\n\n display: <span class=\"value\">table-cell</span>;\n\n <span class=\"selector\">.align__child</span> {\n  display: <span class=\"value\">inline-block</span>;\n }\n}"
   },
   positions: {
     obj: document.getElementsByClassName("align--positions")[0],
-    align_status: ["left", "left"]
+    code_obj: document.getElementById("code_positions"),
+    align_status: ["left", "left"],
+    code_scss: "<span class=\"selector\">.align </span>{\n position: <span class=\"value\">relative</span>;\n\n <span class=\"selector\">.align__child</span> {\n  position: <span class=\"value\">absolute</span>;\n  top: <span class=\"value\">$VALUE_1$%</span>;\n  left: <span class=\"value\">$VALUE_2$%</span>;\n  transform: <span class=\"value\">translate(-$VALUE_2$%, -$VALUE_1$%)</span>;\n }\n}"
   },
   flexbox: {
     obj: document.getElementsByClassName("align--flexbox")[0],
-    align_status: ["left", "left"]
+    code_obj: document.getElementById("code_flexbox"),
+    align_status: ["left", "left"],
+    code_scss: "<span class=\"selector\">.align </span>{\n display: <span class=\"value\">flex</span>;\n\n justify-content: <span class=\"value\">$VALUE_1$</span>;\n align-items: <span class=\"value\">$VALUE_2$</span>\n}"
   },
   grid: {
     obj: document.getElementsByClassName("align--grid")[0],
-    align_status: ["left", "left"]
+    code_obj: document.getElementById("code_grid"),
+    align_status: ["left", "left"],
+    code_scss: "<span class=\"selector\">.align </span>{\n display: <span class=\"value\">grid</span>;\n grid-template: <span class=\"value\">repeat(3, 1fr) / repeat(3, 1fr)</span>;\n\n <span class=\"selector\">.align__child</span> {\n  grid-column: <span class=\"value\">$VALUE_1$</span>;\n  grid-row: <span class=\"value\">$VALUE_2$</span>;\n\n }\n}"
   }
 };
 Object.values(ALIGN_OBJ).forEach(function (value) {
@@ -65,6 +75,7 @@ var align_functions = {
     var top_margin = multiplier["".concat(alignTo[1])] * height / FONT_SIZE;
     ALIGN_OBJ.margin.child.style = "margin-left: ".concat(left_margin, "rem; margin-top: ").concat(top_margin, "rem;");
     ALIGN_OBJ.margin.align_status = [alignTo[0], alignTo[1]];
+    ALIGN_OBJ.margin.code_obj.innerHTML = ALIGN_OBJ.margin.code_scss.replace("$VALUE_1$", top_margin).replace("$VALUE_2$", left_margin);
   },
   table_cell: function table_cell() {
     var alignTo = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ["center", "center"];
@@ -82,6 +93,7 @@ var align_functions = {
     var vertical_align = vertical_value["".concat(alignTo[1])];
     ALIGN_OBJ.table_cell.obj.style = "text-align: ".concat(text_align, "; vertical-align: ").concat(vertical_align, ";");
     ALIGN_OBJ.table_cell.align_status = [alignTo[0], alignTo[1]];
+    ALIGN_OBJ.table_cell.code_obj.innerHTML = ALIGN_OBJ.table_cell.code_scss.replace("$VALUE_1$", text_align).replace("$VALUE_2$", vertical_align.replace(/;.*/g, ""));
   },
   positions: function positions() {
     var alignTo = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ["center", "center"];
@@ -94,6 +106,7 @@ var align_functions = {
     var top_position = align_number["".concat(alignTo[1])] * 100 / 2;
     ALIGN_OBJ.positions.child.style = "left: ".concat(left_position, "%; top: ").concat(top_position, "%; transform: translate(-").concat(left_position, "%, -").concat(top_position, "%);");
     ALIGN_OBJ.positions.align_status = [alignTo[0], alignTo[1]];
+    ALIGN_OBJ.positions.code_obj.innerHTML = ALIGN_OBJ.positions.code_scss.replace(/\$VALUE_1\$/g, top_position).replace(/\$VALUE_2\$/g, left_position);
   },
   flexbox: function flexbox() {
     var alignTo = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ["center", "center"];
@@ -106,6 +119,7 @@ var align_functions = {
     var align_items = flex_value["".concat(alignTo[1])];
     ALIGN_OBJ.flexbox.obj.style = "justify-content: ".concat(justify_content, "; align-items: ").concat(align_items, ";");
     ALIGN_OBJ.flexbox.align_status = [alignTo[0], alignTo[1]];
+    ALIGN_OBJ.flexbox.code_obj.innerHTML = ALIGN_OBJ.flexbox.code_scss.replace("$VALUE_1$", justify_content).replace("$VALUE_2$", align_items);
   },
   grid: function grid() {
     var alignTo = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ["center", "center"];
@@ -118,6 +132,7 @@ var align_functions = {
     var row_cell = grid_cell["".concat(alignTo[1])];
     ALIGN_OBJ.grid.child.style = "grid-column: ".concat(column_cell, "; grid-row: ").concat(row_cell, ";");
     ALIGN_OBJ.grid.align_status = [alignTo[0], alignTo[1]];
+    ALIGN_OBJ.grid.code_obj.innerHTML = ALIGN_OBJ.grid.code_scss.replace("$VALUE_1$", column_cell).replace("$VALUE_2$", row_cell);
   }
 };
 
@@ -195,6 +210,12 @@ var calcCoordinatesAlign = function calcCoordinatesAlign() {
   return align_coordinates;
 };
 
+window.onload = function () {
+  Object.values(align_functions).forEach(function (funct) {
+    return funct();
+  });
+};
+
 window.onkeydown = function (event) {
   if (KEY_CODES.includes(event.keyCode)) {
     event.preventDefault();
@@ -243,7 +264,7 @@ window.ontouchend = function (event) {
   touch_coordinates["final"].y = event.changedTouches[0].clientY;
   var coordinates_obj = calcCoordinatesAlign(touch_coordinates.initial, touch_coordinates["final"]);
 
-  if (event.target.className === "grid-display__obj" && Math.abs(coordinates_obj.difference) <= DEVICE_SCREEN[coordinates_obj.axis] * 0.5) {
+  if (event.target.className === "grid-display__obj" && Math.abs(coordinates_obj.difference) > 25) {
     var align_target = {
       align_name: event.target.parentElement.previousElementSibling.className.replace("align align--", "").replace("-", "_")
     };
