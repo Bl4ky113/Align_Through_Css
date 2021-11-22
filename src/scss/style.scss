@@ -76,12 +76,22 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  align-content: space-around;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 0.25rem;
 
-  
+  .article {
+    display: grid;
+    grid-template: auto 1fr auto / auto 1fr;
+    grid-template-areas: "align"
+                         "code "
+                         "text ";
+    justify-items: center;
+  }
+
   .section {
-    margin: 0.25rem;
+    width: 85vw;
+
+    margin: 0.15rem auto;
     border: 2px solid $color_dark;
     border-radius: 0.25rem;
     padding: 0.25rem;
@@ -94,6 +104,8 @@
                          "align";
     align-items: stretch;
     justify-content: stretch;
+
+    grid-area: align;
 
     .section__title {
       border-left: 2px solid $color_black;
@@ -157,33 +169,16 @@
     }
 
     .align--table-cell {
-      // text-align: left;
-      // vertical-align: top;
-      
       display: table-cell;
-
-      .align__child {
-        display: inline-block;
-      }
+      .align__child { display: inline-block; }
     }
 
     .align--positions {
       position: relative;
-
-      .align__child {
-        position: absolute;
-        // top: 0%;
-        // left: 0%;
-        // transform: translate(-0%, -0%);
-      }
+      .align__child { position: absolute; }
     }
 
-    .align--flexbox {
-      display: flex;
-
-      // justify-content: flex-end;
-      // align-items: flex-end;
-    }
+    .align--flexbox { display: flex; }
 
     .align--grid {
       display: grid;
@@ -196,7 +191,11 @@
     grid-template-areas: "title"
                          "code ";
 
+    gap: 0.25rem;
+
     background-color: $color_dark;
+
+    grid-area: code;
 
     .code-wrapper {
       border-radius: 0.25rem;
@@ -215,14 +214,14 @@
       }
 
       .code-pre {
-        width: 15rem;
+        width: 75vw;
 
         overflow-x: auto;
       }
       
       .code {
-        width: 15rem;
-  
+        width: 100%;
+
         color: $font_white;
         font: 500 0.75rem "Roboto Mono", monospace;
         
@@ -231,6 +230,71 @@
 
         .selector { color: $color_scss; }
         .value { color: $color_scss_light; }
+      }
+    }
+  }
+
+  .section--text {
+    border: none;
+
+    background-color: $color_white;
+
+    grid-area: text;
+
+    .title {
+      color: $color_dark;
+      font: 700 1.5rem "Roboto Condensed", sans-serif;
+    }
+
+    .subtitle {
+      color: $color_base;
+      font: 70 1.25rem "Roboto Condensed", sans-serif;
+    }
+
+    .text {
+      margin: 0.15rem auto;
+
+      color: $font_black;
+      font: 400 1em "Roboto", sans-serif;
+    }
+
+    .link {
+      color: $color_base;
+      font: 600 1em "Roboto", sans-serif;
+      text-decoration: none;
+
+      &::before {
+        padding: 0 0.15rem;
+
+        content: "\f0c1";
+        color: $color_base;
+        font: 500 1em "FontAwesome";
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: underline solid $color_base;
+      }
+    }
+
+    .list {
+      margin: 0.15rem auto;
+      border-left: 2px solid $color_base;
+      padding-left: 0.25rem;
+
+      list-style: none;
+      .li {
+        &::before {
+          margin-right: 0.25rem;
+          
+          content: "\f101";
+          color: $color_base;
+          font: 500 1em "Fontawesome";
+        }
+
+        color: $font_black;
+        font: 400 1em "Roboto", sans-serif;
       }
     }
   }

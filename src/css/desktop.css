@@ -1,0 +1,14 @@
+.main .section--text .title,
+.main .section--text .text,
+.main .section--text .list {
+  width: 65vw;
+}
+
+.footer {
+  grid-template-columns: repeat(3, 1fr);
+}
+.footer .footer-section {
+  border: none;
+  border-left: 2px solid #2C7873;
+  border-right: 2px solid #2C7873;
+}

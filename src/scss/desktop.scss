@@ -1,0 +1,19 @@
+@import "_variables";
+
+.main {
+  .section--text {
+    .title,
+    .text,
+    .list{ width: 65vw;}
+  }
+}
+
+.footer {
+  grid-template-columns: repeat(3, 1fr);
+
+  .footer-section {
+    border: none;
+    border-left: 2px solid $color_base;
+    border-right: 2px solid $color_base;
+  }
+}

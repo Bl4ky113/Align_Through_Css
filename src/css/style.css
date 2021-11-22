@@ -60,11 +60,18 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  align-content: space-around;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 0.25rem;
+}
+.main .article {
+  display: grid;
+  grid-template: auto 1fr auto/auto 1fr;
+  grid-template-areas: "align" "code " "text ";
+  justify-items: center;
 }
 .main .section {
-  margin: 0.25rem;
+  width: 85vw;
+  margin: 0.15rem auto;
   border: 2px solid #004445;
   border-radius: 0.25rem;
   padding: 0.25rem;
@@ -74,6 +81,7 @@
   grid-template-areas: "title" "align";
   align-items: stretch;
   justify-content: stretch;
+  grid-area: align;
 }
 .main .section .section__title {
   border-left: 2px solid #021C1E;
@@ -140,7 +148,9 @@
 .main .section--code {
   grid-template: auto 1fr/1fr;
   grid-template-areas: "title" "code ";
+  gap: 0.25rem;
   background-color: #004445;
+  grid-area: code;
 }
 .main .section--code .code-wrapper {
   border-radius: 0.25rem;
@@ -156,11 +166,11 @@
   text-transform: capitalize;
 }
 .main .section--code .code-wrapper .code-pre {
-  width: 15rem;
+  width: 75vw;
   overflow-x: auto;
 }
 .main .section--code .code-wrapper .code {
-  width: 15rem;
+  width: 100%;
   color: #fff;
   font: 500 0.75rem "Roboto Mono", monospace;
   display: block;
@@ -171,6 +181,54 @@
 }
 .main .section--code .code-wrapper .code .value {
   color: #ffb5f9;
+}
+.main .section--text {
+  border: none;
+  background-color: #fff;
+  grid-area: text;
+}
+.main .section--text .title {
+  color: #004445;
+  font: 700 1.5rem "Roboto Condensed", sans-serif;
+}
+.main .section--text .subtitle {
+  color: #2C7873;
+  font: 70 1.25rem "Roboto Condensed", sans-serif;
+}
+.main .section--text .text {
+  margin: 0.15rem auto;
+  color: #000;
+  font: 400 1em "Roboto", sans-serif;
+}
+.main .section--text .link {
+  color: #2C7873;
+  font: 600 1em "Roboto", sans-serif;
+  text-decoration: none;
+}
+.main .section--text .link::before {
+  padding: 0 0.15rem;
+  content: "";
+  color: #2C7873;
+  font: 500 1em "FontAwesome";
+}
+.main .section--text .link:hover, .main .section--text .link:focus, .main .section--text .link:active {
+  text-decoration: underline solid #2C7873;
+}
+.main .section--text .list {
+  margin: 0.15rem auto;
+  border-left: 2px solid #2C7873;
+  padding-left: 0.25rem;
+  list-style: none;
+}
+.main .section--text .list .li {
+  color: #000;
+  font: 400 1em "Roboto", sans-serif;
+}
+.main .section--text .list .li::before {
+  margin-right: 0.25rem;
+  content: "";
+  color: #2C7873;
+  font: 500 1em "Fontawesome";
 }
 
 .footer {
