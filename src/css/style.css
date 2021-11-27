@@ -235,6 +235,17 @@
   display: flex;
   justify-content: space-around;
 }
+.main .section--specialtext {
+  padding: 0.5rem;
+  background-color: #2C7873;
+}
+.main .section--specialtext .title {
+  border-color: #6FB98F;
+  color: #fff;
+}
+.main .section--specialtext .text {
+  color: #fff;
+}
 
 .footer {
   padding: 0.75rem 0.25rem;

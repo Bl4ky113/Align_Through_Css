@@ -22,3 +22,6 @@
 .main .section--text .center-wrapper {
   width: 85vw;
 }
+.main .section--specialtext {
+  margin: 0.5rem auto;
+}

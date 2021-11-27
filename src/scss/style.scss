@@ -305,6 +305,21 @@
       justify-content: space-around;
     }
   }
+
+  .section--specialtext {
+    padding: 0.5rem;
+
+    background-color: $color_base;
+    
+    .title {
+      border-color: $color_light;
+      color: $font_white;
+    }
+
+    .text {
+      color: $font_white;
+    }
+  }
 }
 
 .footer {
