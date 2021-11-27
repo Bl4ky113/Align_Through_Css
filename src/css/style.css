@@ -188,6 +188,7 @@
   grid-area: text;
 }
 .main .section--text .title {
+  border-bottom: 2px solid #004445;
   color: #004445;
   font: 700 1.5rem "Roboto Condensed", sans-serif;
 }

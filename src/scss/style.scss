@@ -242,10 +242,12 @@
     grid-area: text;
 
     .title {
+      border-bottom: 2px solid $color_dark;
+      
       color: $color_dark;
       font: 700 1.5rem "Roboto Condensed", sans-serif;
     }
-
+    
     .subtitle {
       color: $color_base;
       font: 70 1.25rem "Roboto Condensed", sans-serif;
