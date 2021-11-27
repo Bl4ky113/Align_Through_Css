@@ -1,10 +1,18 @@
 @import "_variables";
 
+.wrapper {
+  grid-template-columns: 10vw 1fr 10vw;
+  grid-template-areas: "header header header"
+                       "blank1 main   blank2"
+                       "footer footer footer";
+}
+
 .main {
   .section--text {
     .title,
     .text,
-    .list{ width: 65vw;}
+    .list,
+    .center-wrapper{ width: 65vw;}
   }
 }
 
@@ -16,4 +24,6 @@
     border-left: 2px solid $color_base;
     border-right: 2px solid $color_base;
   }
+
+  .list { border: none; }
 }

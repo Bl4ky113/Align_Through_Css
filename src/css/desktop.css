@@ -1,6 +1,12 @@
+.wrapper {
+  grid-template-columns: 10vw 1fr 10vw;
+  grid-template-areas: "header header header" "blank1 main   blank2" "footer footer footer";
+}
+
 .main .section--text .title,
 .main .section--text .text,
-.main .section--text .list {
+.main .section--text .list,
+.main .section--text .center-wrapper {
   width: 65vw;
 }
 
@@ -11,4 +17,7 @@
   border: none;
   border-left: 2px solid #2C7873;
   border-right: 2px solid #2C7873;
+}
+.footer .list {
+  border: none;
 }

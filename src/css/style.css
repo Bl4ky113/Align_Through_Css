@@ -230,10 +230,15 @@
   color: #2C7873;
   font: 500 1em "Fontawesome";
 }
+.main .section--text .center-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
 
 .footer {
   padding: 0.75rem 0.25rem;
   background-color: #004445;
+  grid-area: footer;
   display: grid;
   grid-template: auto/1fr;
   gap: 0.5rem;

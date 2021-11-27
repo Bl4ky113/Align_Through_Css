@@ -55,7 +55,30 @@
         </div>
       </section>
       <section class="section section--text">
-        
+        <p class="title">Description</p>
+        <p class="text">
+          This Align Method uses the margin top and left properties. A fixed width and height of an element and 
+          the element's parent. The parent, in order to have a "nice" and easier align, must be 3 times bigger, in 
+          height and width, than the element.
+        </p>
+        <p class="subtitle">Align The Element</p>
+        <p class="text">
+          In order to align the element in the <strong>x</strong> axis. We only have to set the margin-left property to these values. 
+        </p>
+        <ul class="list">
+          <li class="li">Left Align: Just set it to 0.</li>
+          <li class="li">Center Align: Set it the width of the element or a 3<sup>rd</sup> part of the parent's width.</li>
+          <li class="li">Right Align: Set it to the double of the width of the element or 2 * 3<sup>rd</sup>s of the parent's width.</li>
+        </ul>
+        <p class="text">
+          Its almost the same process and math to align the element in the <strong>y</strong> axis, only changing the width of the 
+          element and its parent for height.
+        </p>
+        <p class="title">History</p>
+        <p class="text">
+          The Margin property was included in the first version of CSS in 1996, but I couldn't find any record if it was before the CSS standard, 
+          in different style sheets like the ViolaWWW style sheet. 
+        </p>
       </section>
     </article>
     <article class="article">
@@ -84,7 +107,42 @@
         </div>
       </section>
       <section class="section section--text">
-
+        <p class="title">Description</p>
+        <p class="text">
+          This Align Method uses the table cell display for the parent element and the inline, block or not, display.
+          For the alignment of the element, we area going to use the text-align and vertical-align properties for 
+          <strong>x</strong> and <strong>y</strong> axis alignment.
+        </p>
+        <p class="subtitle">Align The Element</p>
+        <p class="text">
+          To align the element on any axis, we only have to change the respective property to the value or 
+          align that we want. The values of each align are pretty simple in this align method, its only the 
+          name of the position on the property.
+        </p>
+        <p class="text">
+          The property of the <strong>x</strong> axis is text-align, and for the <strong>y</strong> axis is 
+          vertical-align.
+        </p>
+        <div class="center-wrapper">
+          <ul class="list">
+            <p class="subtitle">X Axis</p>
+            <li class="li">left</li>
+            <li class="li">center</li>
+            <li class="li">right</li>
+          </ul>
+          <ul class="list">
+            <p class="subtitle">Y Axis</p>
+            <li class="li">top</li>
+            <li class="li">middle</li>
+            <li class="li">bottom</li>
+          </ul>
+        </div>
+        <p class="title">History</p>
+        <p class="text">
+          The Table Objects are one of the most old thing in the web, being the base of the style and design 
+          of the old web. The table objects were in the web before the CSS standard, but with first version of CSS we could align 
+          the content of the tables.
+        </p>
       </section>
     </article>
     <article class="article">
@@ -113,7 +171,37 @@
         </div>
       </section>
       <section class="section section--text">
-        
+        <p class="title">Description</p>
+        <p class="text">
+          This Align Method uses the position property. And the left, top and transform (translate) properties to align the element in the 
+          <strong>x</strong> and <strong>y</strong> axis.
+        </p>
+        <p class="subtitle">Align the Element</p>
+        <p class="text">
+          For the <strong>x</strong> axis align, we are going to use the left property. For the <strong>y</strong> axis we are going to use 
+          the top property. And depending the align, we are going to use these values.
+        </p>
+        <ul class="list">
+          <li class="li">left / top: 0%</li>
+          <li class="li">center: 50%</li>
+          <li class="li">right / bottom: 100%</li>
+        </ul>
+        <p class="text">
+          If we leave it like this, the element will be off the position by the same percentage. 
+          Example, with 50% it'll be off 50% from the center. To solve that, we are going to use the 
+          transform property with the translate function value.
+        </p>
+        <p class="text">
+          The translate function needs two parameters, the translation on the <strong>x</strong> axis and the 
+          translation on the <strong>y</strong> axis. We are going to set the needed parameters just like the 
+          left and top properties, but we are going to set them as a negative percentage, adding the minus symbol before the percentage.
+        </p>
+        <p class="title">History</p>
+        <p class="text">
+          The position, left, top, right and bottom properties were introduced in the second version of CSS in 1998. 
+          But the transform property and translate value function were introduced in 2008, it was a new age for the web, 
+          at the dawn of new technologies such as Flexbox.
+        </p>
       </section>
     </article>
     <article class="article">
@@ -142,7 +230,27 @@
         </div>
       </section>
       <section class="section section--text">
-        
+        <p class="title">Description</p>
+        <p class="text">
+          This Align Method uses Flexbox and its align properties, justify-content and align-items. 
+          Some old browsers such as old versions of Internet Explorer, might not support Flexbox.
+        </p>
+        <p class="subtitle">Align The Element</p>
+        <p class="text">
+          Flebox is simple, almost like the table cell align method, it only uses the name of the align position as a value. But 
+          the names change a bit. For the <strong>x</strong> axis align, we are going to use justify-content and align-items for the <strong>y</strong> axis.
+        </p>
+        <ul class="list">
+          <li class="li">Left / Top: flex-start</li>
+          <li class="li">Center: center</li>
+          <li class="li">Right / Bottom: flex-end</li>
+        </ul>
+        <p class="title">History</p>
+        <p class="text">
+          Flexbox was introduced in 2009, but it wasn't the Flexbox of nowdays, it was a different version of flexbox a very weird and bad one. 
+          But in 2011, Flexbox changed to the version which everybody knows and uses today. Flexbox was also introduced as a part or "module" of 
+          the new third version of CSS.
+        </p>
       </section>
     </article>
     <article class="article">
@@ -171,7 +279,29 @@
         </div>
       </section>
       <section class="section section--text">
-        
+        <p class="title">Description</p>
+        <p class="text">
+          This Align Method uses one of the newest innovations in web development. CSS Grid Layout.
+          Some old browsers such as old versions of Internet Explorer, might not support CSS Grid Layout.
+        </p>
+        <p class="text">
+          We could use Grid to align the element just like Flexbox, but that isn't the main usage of 
+          Grid Layout. We are going to use the grid-template, row and column properties.
+        </p>
+        <p class="subtitle">Align The Element</p>
+        <p class="text">
+          We are going to create a 3x3 grid template in the parent element, creating 3 cells in the row and the column. 
+          Then we can align the element on the <strong>x</strong> and <strong>y</strong> axis, setting the grid-row 
+          and grid-column properties to the number of cells that we need.
+        </p>
+        <p class="title">History</p>
+        <p class="text">
+          The idea of a Grid in CSS is old as tables in HTML. They were an idea, but not a real layout in CSS; 
+          sometimes the layout of grid was imitated using properties like floats and elements like the tables. 
+          The Floats are not in this list because of the inability of vertical and horizontal alignment. 
+          Sometimes using Javascript to recreate the Grid Layout. But it wasn't until 2017 that we could 
+          use one of the modules from the third version of CSS. CSS Grid Layout.
+        </p>
       </section>
     </article>
   </main>
@@ -179,7 +309,14 @@
     <section class="footer-section">
       <p class="footer__title">References</p>
       <ul class="list">
-        <li class="list__obj">Class 7 and 8 of <a href="https://platzi.com/cursos/css-grid-layout/" class="list__link">Platzi' Curso Profesional de CSS Grid Layout</a></li>
+        <li class="list__obj">Class 7 and 8 of <a href="https://platzi.com/cursos/css-grid-layout/" class="list__link">Platzi' Curso Profesional de CSS Grid Layout.</a></li>
+        <li class="list__obj"><a href="https://www.w3.org/Style/CSS20/history.html" class="list__link">A brief history of CSS until 2016. World Wide Web Consortium.</a></li>
+        <li class="list__obj"><a href="https://en.wikipedia.org/wiki/CSS" class="list__link">CSS. Wikipedia The Free Encyclopedia.</a></li>
+        <li class="list__obj"><a href="https://caniuse.com/mdn-css_types_transform-function_translate" class="list__link">&lt;transform-function&gt;: translate(). Can I Use?</a></li>
+        <li class="list__obj"><a href="https://css-tricks.com/old-flexbox-and-new-flexbox/" class="list__link">“Old” Flexbox and “New” Flexbox. Chris Coyier. CSS-Tricks.</a></li>
+        <li class="list__obj"><a href="https://www.w3.org/TR/2009/WD-css3-flexbox-20090723/" class="list__link">Flexible Box Layout Module. 2009. World Wide Web Consortium.</a></li>
+        <li class="list__obj"><a href="https://www.w3.org/TR/2009/WD-css3-flexbox-20090723/" class="list__link">Flexible Box Layout Module. 2011. World Wide Web Consortium.</a></li>
+        <li class="list__obj"><a href="https://www.w3.org/TR/css-grid-1/#intro" class="list__link">CSS Grid Layout Module Level 1. World Wide Web Consortium</a></li>
       </ul>
     </section>
     <section class="footer-section">

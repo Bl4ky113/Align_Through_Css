@@ -18,6 +18,7 @@
 }
 .main .section--text .title,
 .main .section--text .text,
-.main .section--text .list {
+.main .section--text .list,
+.main .section--text .center-wrapper {
   width: 85vw;
 }

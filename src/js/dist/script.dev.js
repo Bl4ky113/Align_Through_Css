@@ -38,7 +38,7 @@ var ALIGN_OBJ = {
     obj: document.getElementsByClassName("align--grid")[0],
     code_obj: document.getElementById("code_grid"),
     align_status: ["left", "left"],
-    code_scss: "<span class=\"selector\">.align </span>{\n display: <span class=\"value\">grid</span>;\n grid-template: <span class=\"value\">repeat(3, 1fr) / repeat(3, 1fr)</span>;\n\n <span class=\"selector\">.align__child</span> {\n  grid-column: <span class=\"value\">$VALUE_1$</span>;\n  grid-row: <span class=\"value\">$VALUE_2$</span>;\n\n }\n}"
+    code_scss: "<span class=\"selector\">.align </span>{\n display: <span class=\"value\">grid</span>;\n grid-template: <span class=\"value\">repeat(3, 1fr) / repeat(3, 1fr)</span>;\n\n <span class=\"selector\">.align__child</span> {\n  grid-column: <span class=\"value\">$VALUE_1$</span>;\n  grid-row: <span class=\"value\">$VALUE_2$</span>;\n }\n}"
   }
 };
 Object.values(ALIGN_OBJ).forEach(function (value) {

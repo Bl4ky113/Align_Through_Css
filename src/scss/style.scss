@@ -297,6 +297,11 @@
         font: 400 1em "Roboto", sans-serif;
       }
     }
+
+    .center-wrapper {
+      display: flex;
+      justify-content: space-around;
+    }
   }
 }
 
@@ -304,6 +309,8 @@
   padding: 0.75rem 0.25rem;
 
   background-color: $color_dark;
+
+  grid-area: footer;
 
   display: grid;
   grid-template: auto / 1fr;
